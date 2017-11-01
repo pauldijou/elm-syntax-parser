@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "summary": "Parse and analyze Elm modules",
+  "repository": "https://github.com/pauldijou/elm-syntax-parser.git",
+  "license": "Apache2",
+  "source-directories": [
+    "src"
+  ],
+  "exposed-modules": [
+
+  ],
+  "native-modules": true,
+  "dependencies": {
+    "elm-lang/core": "5.0.0 <= v < 6.0.0",
+    "elm-tools/parser": "2.0.0 <= v < 3.0.0",
+    "pauldijou/docs": "1.0.0 <= v < 2.0.0",
+    "pauldijou/elm-node": "0.0.0 <= v < 1.0.0"
+  },
+  "dependency-sources": {
+    "pauldijou/elm-node": {
+      "url": "https://github.com/pauldijou/elm-node.git",
+      "ref": "7c9766d553897806c7fcaeaba621d779ec066c2c"
+    },
+    "pauldijou/docs": {
+      "url": "https://github.com/pauldijou/docs.git",
+      "ref": "345a8ceb54d9789251c1cc14be4eb82892be114a"
+    }
+  },
+  "elm-version": "0.18.0 <= v < 0.19.0"
+}

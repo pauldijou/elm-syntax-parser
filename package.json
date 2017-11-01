@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "deps": "elm-github-install",
+    "build": "elm-make --warn ./test/Runner.elm --output ./dist/Runner.js",
+    "start": "node ./test/runner.js"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "elm": "0.18.0",
+    "elm-github-install": "1.5.0",
+    "elm-ordeal": "0.0.5"
+  }
+}
