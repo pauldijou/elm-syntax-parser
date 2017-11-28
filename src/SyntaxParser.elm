@@ -132,13 +132,15 @@ type alias ParseContext =
 reduceStatement: String -> ParseContext -> ParseContext
 reduceStatement strStmt ctx =
   case Parser.run Statement.parser strStmt of
-    Err _ -> ctx
+    Err err -> let a = Debug.log "err" err in  ctx
     Ok stmt -> case stmt of
-      Statement.Import imp ->
+      Nothing ->
+        ctx
+      Just (Statement.Import imp) ->
         { ctx | imports = imp :: ctx.imports }
-      Statement.Alias name args tipe ->
+      Just (Statement.Alias name args tipe) ->
         { ctx | aliases = { name = name, comment = "", args = args, tipe = tipe } :: ctx.aliases }
-      Statement.Union name args tags ->
+      Just (Statement.Union name args tags) ->
         { ctx | unions = { name = name, comment = "", args = args, tags = tags } :: ctx.unions }
-      Statement.Value name tipe ->
+      Just (Statement.Value name tipe) ->
         { ctx | values = { name = Docs.Name name, comment = "", tipe = tipe } :: ctx.values }

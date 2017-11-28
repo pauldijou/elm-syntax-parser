@@ -4,7 +4,8 @@
   "repository": "https://github.com/pauldijou/elm-syntax-parser.git",
   "license": "Apache2",
   "source-directories": [
-    "src"
+    "src",
+    "test"
   ],
   "exposed-modules": [
 

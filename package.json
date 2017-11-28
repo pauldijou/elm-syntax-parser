@@ -2,7 +2,8 @@
   "scripts": {
     "deps": "elm-github-install",
     "build": "elm-make --warn ./test/Runner.elm --output ./dist/Runner.js",
-    "start": "node ./test/runner.js"
+    "start": "node ./test/runner.js",
+    "build:test": "elm-make --warn ./test/package/src/FakePackage.elm --output ./dist/FakePackage.js"
   },
   "dependencies": {
 

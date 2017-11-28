@@ -37,6 +37,7 @@ type alias Declaration = { name: String, exposure: Exposure }
 
 parserDeclaration: Parser Declaration
 parserDeclaration =
+  Parser.inContext "module declaration" <|
   Parser.succeed Declaration
   |. Parser.keyword "module"
   |. Helpers.spaces
@@ -56,6 +57,7 @@ parserImportAlias =
 
 parserImport: Parser Import
 parserImport =
+  Parser.inContext "import" <|
   Parser.succeed Import
   |. Parser.keyword "import"
   |. Helpers.spaces

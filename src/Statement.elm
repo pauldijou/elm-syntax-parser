@@ -14,13 +14,14 @@ type Statement
   | Value String Type
 
 
-parser: Parser Statement
+parser: Parser (Maybe Statement)
 parser =
   Parser.oneOf
-    [ Parser.map Import Module.parserImport
-    , parserAlias
-    , parserUnion
-    , parserValue
+    [ Parser.map (Import >> Just) Module.parserImport
+    , parserAlias |> Parser.map Just
+    , parserUnion |> Parser.map Just
+    , parserValue |> Parser.map Just
+    , Parser.succeed Nothing
     ]
 
 grabSeveral: Parser () -> Parser a -> List a -> Parser (List a)
@@ -44,6 +45,7 @@ parserArgs =
 
 parserAlias: Parser Statement
 parserAlias =
+  Parser.inContext "type alias definition" <|
   Parser.delayedCommit
     (
       Parser.succeed identity
@@ -80,6 +82,7 @@ parserUnionTag =
 
 parserUnion: Parser Statement
 parserUnion =
+  Parser.inContext "union type definition" <|
   Parser.delayedCommitMap
     (\name (args, tags) -> Union name args tags)
     (
@@ -101,6 +104,7 @@ parserUnion =
 
 parserValue: Parser Statement
 parserValue =
+  Parser.inContext "value signature" <|
   Parser.delayedCommitMap
     (\name tipe -> Value name tipe)
     (
